@@ -13,7 +13,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login w/ Bloc')),
+      //appBar: AppBar(title: const Text('Login w/ Bloc')),
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: BlocProvider(

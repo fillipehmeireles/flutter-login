@@ -1,81 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:login/widgets/buttons/primary_button.dart';
+import 'package:login/widgets/buttons/primary_text_button.dart';
+import 'package:login/widgets/text_inputs/primary_text_input.dart';
 
 import '../bloc/login_bloc.dart';
 
+part 'buttons/login_button.dart';
+part 'inputs/login_textfields.dart';
+part 'buttons/register_button.dart';
+
 class LoginView extends StatelessWidget {
-  const LoginView();
+  const LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-      return Column(
-        children: [
-          _NameInput(),
-          const Padding(padding: EdgeInsets.all(12)),
-          _AgeInput(),
-          const Padding(padding: EdgeInsets.all(12)),
-          _LoginButton()
-        ],
+      return Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            _EmailInput(),
+            Padding(padding: EdgeInsets.all(12)),
+            _PasswordInput(),
+            Padding(padding: EdgeInsets.all(12)),
+            _LoginButton()
+          ],
+        ),
       );
-    });
-  }
-}
-
-class _NameInput extends StatelessWidget {
-  const _NameInput();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
-        buildWhen: (previous, current) => previous.name != current.name,
-        builder: (context, state) {
-          return TextField(
-            key: const Key('loginForm_usernameInput_textField'),
-            onChanged: (name) =>
-                context.read<LoginBloc>().add(LoginNameChanged(name)),
-            decoration: const InputDecoration(
-              labelText: 'name',
-            ),
-          );
-        });
-  }
-}
-
-class _AgeInput extends StatelessWidget {
-  const _AgeInput();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
-        buildWhen: (previous, current) => previous.name != current.name,
-        builder: (context, state) {
-          return TextField(
-            key: const Key('loginForm_ageInput_textField'),
-            onChanged: (age) =>
-                context.read<LoginBloc>().add(LoginAgeChanged(int.parse(age))),
-            decoration: const InputDecoration(
-              labelText: 'age',
-            ),
-          );
-        });
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  const _LoginButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-      return state.submitLoading
-          ? const CircularProgressIndicator()
-          : ElevatedButton(
-              key: const Key('loginForm_elevatedButton_submit'),
-              onPressed: () =>
-                  context.read<LoginBloc>().add(const LoginSubmitted(true)),
-              child: const Text('Login'),
-            );
     });
   }
 }

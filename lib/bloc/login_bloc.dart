@@ -31,6 +31,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     print(user); */
     //emit(state.copyWith(status: true));
     emit(state.copyWith(submitLoading: event.submitLoading));
-    print(state);
   }
 }
