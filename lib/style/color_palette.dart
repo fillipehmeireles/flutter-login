@@ -5,4 +5,5 @@ class ColorPallet {
   static const Color roseQuartz = Color.fromRGBO(244, 185, 184, 1.0);
   static const Color spearMint = Color.fromRGBO(133, 210, 208, 1.0);
   static const Color purple = Color.fromRGBO(136, 123, 176, 1.0);
+  static const Color smoothGrey = Color.fromRGBO(117, 117, 117, 1);
 }

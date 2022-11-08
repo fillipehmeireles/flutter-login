@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/style/button/app_button_style.dart';
+import 'package:login/style/app_style.dart';
 
 class OutlinedPrimaryButton extends StatelessWidget {
   const OutlinedPrimaryButton(
@@ -12,10 +12,10 @@ class OutlinedPrimaryButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: onPress,
       style: ButtonStyle(
-        foregroundColor: MaterialStateColor.resolveWith(
-            (states) => AppButtonStyle.secondaryColor),
+        foregroundColor:
+            MaterialStateColor.resolveWith((states) => AppStyle.secondaryColor),
       ),
-      child: Text('$text'),
+      child: Text(text),
     );
   }
 }

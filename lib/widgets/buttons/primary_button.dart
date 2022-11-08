@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login/style/button/app_button_style.dart';
+import 'package:login/style/app_style.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({super.key, required this.text, required this.onPress});
@@ -12,14 +12,15 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       key: const Key('loginForm_elevatedButton_submit'),
       onPressed: onPress,
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith(
-          (states) {
-            return AppButtonStyle.primaryColor;
-          },
-        ),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppStyle.primaryColor,
+        foregroundColor: Colors.white,
+        minimumSize: const Size.fromHeight(50),
       ),
-      child: Text('$text'),
+      child: Text(
+        text.toUpperCase(),
+        style: const TextStyle(fontSize: 16),
+      ),
     );
   }
 }
