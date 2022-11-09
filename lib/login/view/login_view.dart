@@ -1,3 +1,4 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login/register/register.dart';
@@ -6,8 +7,6 @@ import 'package:login/style/app_style.dart';
 import 'package:login/widgets/buttons/primary_button.dart';
 import 'package:login/widgets/buttons/primary_text_button.dart';
 import 'package:login/widgets/text_inputs/primary_text_input.dart';
-
-import '../../widgets/text_inputs/email_text_input.dart';
 import '../bloc/login_bloc.dart';
 
 part 'buttons/login_button.dart';
@@ -27,6 +26,19 @@ class LoginView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            /*  const Image(
+              image: AssetImage('assets/images/logo.png'),
+              width: 100,
+            ),*/
+            SizedBox(
+              width: 95,
+              child: Image.asset('assets/images/logo.png').blurred(
+                colorOpacity: 0,
+                borderRadius:
+                    const BorderRadius.horizontal(right: Radius.circular(10)),
+                blur: 1.8,
+              ),
+            ),
             Text(
               'Welcome Back',
               style: TextStyle(
@@ -37,7 +49,7 @@ class LoginView extends StatelessWidget {
             Text('Sign to continue',
                 style:
                     TextStyle(color: AppStyle.secondaryColor, fontSize: 16.0)),
-            const Padding(padding: EdgeInsets.only(bottom: 22)),
+            const Padding(padding: EdgeInsets.only(bottom: 80)),
             const _EmailInput(),
             const Padding(padding: EdgeInsets.all(12)),
             //_PasswordInput(),

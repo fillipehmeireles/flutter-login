@@ -5,7 +5,9 @@ import 'package:login/register/bloc/register_event.dart';
 import 'package:login/register/bloc/register_state.dart';
 import 'package:login/style/app_style.dart';
 import 'package:login/widgets/buttons/primary_button.dart';
+import 'package:login/widgets/buttons/primary_text_button.dart';
 import 'package:login/widgets/text_inputs/email_text_input.dart';
+import 'package:login/widgets/text_inputs/password_text_input.dart';
 import 'package:login/widgets/text_inputs/phone_text_input.dart';
 import 'package:login/widgets/text_inputs/user_text_input.dart';
 
@@ -14,7 +16,7 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.only(right: 20, left: 20),
       child:
           BlocBuilder<RegisterBloc, RegisterState>(builder: (context, state) {
@@ -51,19 +53,29 @@ class RegisterView extends StatelessWidget {
                       .read<RegisterBloc>()
                       .add(RegisterPhoneChanged(phone))),
               const Padding(padding: EdgeInsets.all(12)),
-              PhoneTextInput(
-                  text: 'PHONE',
-                  onChange: (phone) => context
+              PasswordTextInput(
+                  passwordHidden: state.passwordHidden,
+                  passwordIcon: state.passwordIcon,
+                  onChange: (password) => context
                       .read<RegisterBloc>()
-                      .add(RegisterPhoneChanged(phone))),
+                      .add(RegisterPasswordChanged(password)),
+                  onPress: () => context
+                      .read<RegisterBloc>()
+                      .add(const PasswordVisibilityChanged())),
               const Padding(padding: EdgeInsets.all(12)),
-              PhoneTextInput(
-                  text: 'PHONE',
-                  onChange: (phone) => context
+              PasswordTextInput(
+                  text: 'CONFIRM PASSWORD',
+                  passwordHidden: state.passwordHiddenConfirm,
+                  passwordIcon: state.passwordIconConfirm,
+                  onChange: (passwordConfirm) => context
                       .read<RegisterBloc>()
-                      .add(RegisterPhoneChanged(phone))),
+                      .add(RegisterPasswordConfirmChanged(passwordConfirm)),
+                  onPress: () => context
+                      .read<RegisterBloc>()
+                      .add(const PasswordVisibilityConfirmChanged())),
               const Padding(padding: EdgeInsets.all(12)),
               PrimaryButton(text: 'CREATE ACCOUNT', onPress: () => {}),
+              const Padding(padding: EdgeInsets.all(12)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,6 +84,7 @@ class RegisterView extends StatelessWidget {
                     "Already have account?",
                     style: TextStyle(color: Colors.grey.shade600),
                   ),
+                  PrimaryTextButton(text: 'Login', onPress: () => {})
                 ],
               )
             ]);
