@@ -14,3 +14,19 @@ class RegisterEmailChanged extends RegisterEvent {
   @override
   List<Object> get props => [email];
 }
+
+class RegisterNameChanged extends RegisterEvent {
+  const RegisterNameChanged(this.name);
+
+  final String name;
+  @override
+  List<Object> get props => [name];
+}
+
+class RegisterPhoneChanged extends RegisterEvent {
+  const RegisterPhoneChanged(this.phone);
+
+  final String phone;
+  @override
+  List<Object> get props => [phone];
+}

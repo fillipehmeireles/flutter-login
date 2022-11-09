@@ -10,14 +10,12 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(12),
-        child: BlocProvider(
-          create: (context) {
-            return LoginBloc();
-          },
-          child: const LoginView(),
-        ),
+      resizeToAvoidBottomInset: false,
+      body: BlocProvider(
+        create: (context) {
+          return LoginBloc();
+        },
+        child: const LoginView(),
       ),
     );
   }
