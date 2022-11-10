@@ -6,11 +6,11 @@ import 'package:login/style/app_style.dart';
 
 import 'package:login/widgets/buttons/primary_button.dart';
 import 'package:login/widgets/buttons/primary_text_button.dart';
-import 'package:login/widgets/text_inputs/primary_text_input.dart';
+import '../../widgets/text_inputs/email_text_input.dart';
+import '../../widgets/text_inputs/password_text_input.dart';
 import '../bloc/login_bloc.dart';
 
 part 'buttons/login_button.dart';
-part 'inputs/login_textfields.dart';
 part 'buttons/register_button.dart';
 part 'buttons/forgot_password_button.dart';
 
@@ -26,10 +26,6 @@ class LoginView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            /*  const Image(
-              image: AssetImage('assets/images/logo.png'),
-              width: 100,
-            ),*/
             SizedBox(
               width: 95,
               child: Image.asset('assets/images/logo.png').blurred(
@@ -50,11 +46,20 @@ class LoginView extends StatelessWidget {
                 style:
                     TextStyle(color: AppStyle.secondaryColor, fontSize: 16.0)),
             const Padding(padding: EdgeInsets.only(bottom: 80)),
-            const _EmailInput(),
+            EmailTextInput(
+                text: 'EMAIL',
+                onChange: (email) =>
+                    context.read<LoginBloc>().add(LoginEmailChanged(email))),
             const Padding(padding: EdgeInsets.all(12)),
-            //_PasswordInput(),
-            const _PasswordInput(),
-            //Padding(padding: EdgeInsets.all(6)),
+            PasswordTextInput(
+                passwordHidden: state.passwordHidden,
+                passwordIcon: state.passwordIcon,
+                onChange: (password) => context
+                    .read<LoginBloc>()
+                    .add(LoginPasswordChanged(password)),
+                onPress: () => context
+                    .read<LoginBloc>()
+                    .add(const PasswordVisibilityChanged())),
             const Align(
               alignment: Alignment.centerRight,
               child: ForgotPasswordButton(),

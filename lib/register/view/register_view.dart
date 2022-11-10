@@ -84,7 +84,8 @@ class RegisterView extends StatelessWidget {
                     "Already have account?",
                     style: TextStyle(color: Colors.grey.shade600),
                   ),
-                  PrimaryTextButton(text: 'Login', onPress: () => {})
+                  PrimaryTextButton(
+                      text: 'Login', onPress: () => Navigator.of(context).pop())
                 ],
               )
             ]);
